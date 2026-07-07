@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>counter</title>
+</head>
+<body>
+
+    <h1>javaScript projecta
+        <h2> counter</h2>
+<p id="count" style="font-size: 30px;"> 0</p>
+<button onclick="incrementCount()">+</button>
+
+<button onclick="decrementCount()">-</button>
+<button onclick="resetCount()">reset</button>
+<button onclick="saveCount()">Save</button>
+<button onclick="loadCount()">load</button>
+
+<script>
+    let count = 0;
+
+    // function to display count
+    upadteCount=()=>{
+        document.getElementById("count").innerHTML= count;
+
+    }
+
+    // increment
+incrementCount=()=>{
+    count++;
+    upadteCount();
+
+    }
+
+    // decrement
+    decrementCount=()=>{
+        count--;
+        upadteCount();
+    }
+
+    // reset function 
+    resetCount=()=>{
+        count = 0;
+        upadteCount();
+
+    }
+
+    // fnction to save
+    saveCount=()=>{
+        localStorage.setItem("count" , count);
+    }
+
+    // load function
+    loadCount=()=>{
+        let saved = localStorage.getItem("count");
+        if(saved !== null){
+            count = Number(saved);
+        }
+        upadteCount();
+    }
+
+</script> 
+
+
+</body>
+</html>
