@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+
+    <h1>Calculator</h1>
+
+    <input type="text" id="display" readonly>
+
+    <div class="buttons">
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="deleteLast()">Del</button>
+
+
+        <button onclick="appendNumber('1')">1</button>
+        <button onclick="appendNumber('2')">2</button>
+
+        <button onclick="appendNumber('3')">3</button>
+        <button onclick="appendNumber('4')">4</button>
+        <button onclick="appendNumber('5')">5</button>
+        <button onclick="appendNumber('6')">6</button>
+        <button onclick="appendNumber('7')">7</button>
+        <button onclick="appendNumber('8')">8</button>
+        <button onclick="appendNumber('9')">9</button>
+        <button onclick="appendNumber('0')">0</button>
+
+        <button onclick="setoperator('/')">/</button>
+        <button onclick="setoperator('*')">*</button>
+        <button onclick="setoperator('+')">+</button>
+        <button onclick="setoperator('-')">-</button>
+        <button onclick="setoperator('%')">%</button>
+
+        <button onclick="calculate()">=</button>
+
+
+
+
+
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+
+        let firstnumber = "";
+        let secondnumber ="";
+        let operator = ""  ;
+let isSecondNumber = false;
+
+appendNumber =(num)=>{
+    if(!isSecondNumber){
+        firstnumber = firstnumber + num;
+        display.value = firstnumber;
+    }
+    else{
+        secondnumber = secondnumber + num;
+        display.value = secondnumber
+    }
+}
+
+setoperator=(op)=>{
+    if(firstnumber === "") return;
+    operator = op;
+    isSecondNumber = true;
+
+}
+
+calculate=()=>{
+    let result = 0;
+    let num1 = Number(firstnumber);
+    let num2 = Number(secondnumber);
+    
+    switch(operator)
+    {
+        case "+":
+            result = num1 + num2;
+            break;
+              case "-":
+            result = num1 - num2;
+            break;
+
+        case "*":
+            result = num1 * num2;
+            break;
+
+        case "/":
+            result = num2 === 0 ? "Error" : num1 / num2;
+            break;
+
+        default:
+            return;
+
+
+    }
+    display.value = result;
+    firstnumber = result.toString();
+    secondnumber ="";
+    operator = "";
+    isSecondNumber = false;
+
+}
+function clearDisplay(){
+
+    firstnumber = "";
+    secondnumber = "";
+    operator = "";
+    isSecondNumber = false;
+    display.value = "";
+
+}
+
+function deleteLast(){
+
+    if(!isSecondNumber){
+        firstnumber = firstnumber.slice(0,-1);
+        display.value = firstnumber;
+    }else{
+        secondnumber = secondnumber.slice(0,-1);
+        display.value = secondnumber;
+    }
+
+
+}
+
+         
+    </script>
+    
+</body>
+</html>
